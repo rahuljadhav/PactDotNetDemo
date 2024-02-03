@@ -20,7 +20,7 @@ namespace ProviderTests
         {
             _outputHelper = output;
             _providerUri = "http://localhost:9003";
-            _pactServiceUrl = "https://tavisca.pactflow.io";
+            _pactServiceUrl = "https://demo.pactflow.io";
 
             this.server = Host.CreateDefaultBuilder()
                             .ConfigureWebHostDefaults(webBuilder =>
@@ -66,7 +66,7 @@ namespace ProviderTests
               .WithPactBrokerSource(new Uri(_pactServiceUrl), options =>
               {
                   options.ConsumerVersionSelectors();
-                  options.TokenAuthentication("eQPTrz_9kbnWLDBKQ5Gttg");
+                  options.TokenAuthentication("test");
                   // options.BasicAuthentication(System.Environment.GetEnvironmentVariable("PACT_BROKER_USERNAME"), System.Environment.GetEnvironmentVariable("PACT_BROKER_PASSWORD"));                  
                   options.PublishResults(true, "1.0.0", results =>
                   {
