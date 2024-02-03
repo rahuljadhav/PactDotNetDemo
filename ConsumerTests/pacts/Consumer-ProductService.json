@@ -1,0 +1,152 @@
+{
+  "consumer": {
+    "name": "Consumer"
+  },
+  "interactions": [
+    {
+      "description": "A valid request to create a product",
+      "providerStates": [
+        {
+          "name": "product creation"
+        }
+      ],
+      "request": {
+        "body": {
+          "id": 3,
+          "name": "Mobile",
+          "price": "$ 300",
+          "type": "Electronics"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/api/products"
+      },
+      "response": {
+        "body": {
+          "id": 3,
+          "name": "Mobile",
+          "price": "$ 300"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid request for a product",
+      "providerStates": [
+        {
+          "name": "product with ID 10 exists"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/products/10"
+      },
+      "response": {
+        "body": {
+          "id": 2,
+          "name": "Notebook",
+          "price": "$ 3",
+          "type": "Educational"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid request for all products",
+      "providerStates": [
+        {
+          "name": "products exist"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/products"
+      },
+      "response": {
+        "body": [
+          {
+            "id": 1,
+            "name": "Laptop",
+            "price": "$ 300",
+            "type": "Electronics"
+          },
+          {
+            "id": 2,
+            "name": "Notebook",
+            "price": "$ 3",
+            "type": "Educational"
+          },
+          {
+            "id": 3,
+            "name": "PaintBox",
+            "price": "$ 5",
+            "type": "Educational"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "ProductService"
+  }
+}
